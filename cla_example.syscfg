@@ -12,6 +12,8 @@
 const cla    = scripting.addModule("/driverlib/cla.js", {}, false);
 const cla1   = cla.addInstance();
 const memcfg = scripting.addModule("/driverlib/memcfg.js");
+const sci    = scripting.addModule("/driverlib/sci.js", {}, false);
+const sci1   = sci.addInstance();
 const CMD    = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD", {}, false);
 const CMD1   = CMD.addInstance();
 
@@ -40,6 +42,16 @@ memcfg.config_MEMCFG_SECT_LS1        = "CLA_data";
 memcfg.config_MEMCFG_SECT_LS4        = "CLA_prog";
 memcfg.config_MEMCFG_SECT_LS5        = "CLA_prog";
 
+sci1.$name                      = "SCI0";
+sci1.selectRegisteredInterrupts = ["registerRxInt"];
+sci1.enabledFIFOInterrupts      = ["SCI_INT_RXFF"];
+sci1.rxFifo                     = "SCI_FIFO_RX1";
+sci1.sci.scirxdPin.$assign      = "GPIO43";
+sci1.sci.scitxdPin.$assign      = "GPIO42";
+sci1.rxQual.$name               = "myGPIOQUAL0";
+sci1.txQual.$name               = "myGPIOQUAL1";
+sci1.sciRXInt.enableInterrupt   = true;
+
 CMD1.$name                         = "CMD0";
 CMD1.sectionMemory_cla1ToCpuMsgRAM = ["CLATOCPU_MSGRAM"];
 CMD1.sectionMemory_cpuToCla1MsgRAM = ["CPUTOCLA_MSGRAM"];
@@ -47,3 +59,10 @@ CMD1.sectionMemory_cla1Prog        = ["RAMLS5"];
 CMD1.sectionMemory_claConst        = ["RAMLS1"];
 CMD1.sectionMemory_claScratchpad   = ["RAMLS1"];
 scripting.suppress("Memcfg module must be enabled for complete error checking\\.", CMD1, "sectionMemory_cpuToCla1MsgRAM");
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+sci1.sci.$suggestSolution = "SCIA";
