@@ -125,7 +125,7 @@ extern __interrupt void INT_SCI0_RX_ISR(void);
 #define SCI0_CONFIG_STOP SCI_CONFIG_STOP_ONE
 #define SCI0_CONFIG_PAR SCI_CONFIG_PAR_NONE
 #define SCI0_FIFO_TX_LVL SCI_FIFO_TX0
-#define SCI0_FIFO_RX_LVL SCI_FIFO_RX1
+#define SCI0_FIFO_RX_LVL SCI_FIFO_RX4
 void SCI0_init();
 
 //*****************************************************************************

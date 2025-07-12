@@ -259,7 +259,7 @@ void SCI0_init(){
 	SCI_disableLoopback(SCI0_BASE);
 	SCI_performSoftwareReset(SCI0_BASE);
 	SCI_enableInterrupt(SCI0_BASE, SCI_INT_RXFF);
-	SCI_setFIFOInterruptLevel(SCI0_BASE, SCI_FIFO_TX0, SCI_FIFO_RX1);
+	SCI_setFIFOInterruptLevel(SCI0_BASE, SCI_FIFO_TX0, SCI_FIFO_RX4);
 	SCI_enableFIFO(SCI0_BASE);
 	SCI_enableModule(SCI0_BASE);
 }
