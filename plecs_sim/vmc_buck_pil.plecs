@@ -1,6 +1,6 @@
 Plecs {
   Name          "vmc_buck_pil"
-  Version       "4.8"
+  Version       "4.9"
   CircuitModel  "ContStateSpace"
   StartTime     "0.0"
   TimeSpan      "0.2"
@@ -53,7 +53,7 @@ Plecs {
   ScriptsDialogGeometry ""
   ScriptsDialogSplitterPos "0"
   Schematic {
-    Location      [0, 26; 1539, 832]
+    Location      [0, 26; 1280, 680]
     ZoomFactor    1.30957
     SliderPosition [0, 0]
     ShowBrowser   off
@@ -62,10 +62,10 @@ Plecs {
       Type          Mosfet
       Name          "FET1"
       Show          on
-      Position      [415, 170]
-      Direction     left
+      Position      [430, 190]
+      Direction     up
       Flipped       off
-      LabelPosition north
+      LabelPosition east
       Parameter {
         Variable      "Ron"
         Value         "0"
@@ -96,13 +96,13 @@ Plecs {
       Type          Inductor
       Name          "L1"
       Show          on
-      Position      [515, 170]
+      Position      [400, 160]
       Direction     left
       Flipped       off
       LabelPosition north
       Parameter {
         Variable      "L"
-        Value         "400e-6"
+        Value         "1e-3"
         Show          on
       }
       Parameter {
@@ -121,12 +121,12 @@ Plecs {
       LabelPosition west
       Parameter {
         Variable      "C"
-        Value         "47e-6"
+        Value         "10e-6"
         Show          on
       }
       Parameter {
         Variable      "v_init"
-        Value         "10"
+        Value         "0"
         Show          off
       }
     }
@@ -140,7 +140,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "5"
+        Value         "10"
         Show          on
       }
     }
@@ -148,10 +148,10 @@ Plecs {
       Type          Diode
       Name          "D1"
       Show          on
-      Position      [455, 200]
-      Direction     down
+      Position      [500, 160]
+      Direction     left
       Flipped       off
-      LabelPosition east
+      LabelPosition south
       Parameter {
         Variable      "Vf"
         Value         "0"
@@ -217,7 +217,7 @@ Plecs {
       }
       Parameter {
         Variable      "f"
-        Value         "20e3"
+        Value         "10e3"
         Show          on
       }
       Parameter {
@@ -232,16 +232,144 @@ Plecs {
       }
     }
     Component {
+      Type          ZeroOrderHold
+      Name          "Zero-Order\nHold"
+      Show          on
+      Position      [750, 200]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Ts"
+        Value         "0.00005"
+        Show          off
+      }
+    }
+    Component {
+      Type          Voltmeter
+      Name          "Vm1"
+      Show          on
+      Position      [690, 200]
+      Direction     up
+      Flipped       off
+      LabelPosition west
+    }
+    Component {
+      Type          Step
+      Name          "Step"
+      Show          on
+      Position      [280, 190]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Time"
+        Value         "0.1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Before"
+        Value         "12"
+        Show          off
+      }
+      Parameter {
+        Variable      "After"
+        Value         "12"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "10"
+        Show          off
+      }
+    }
+    Component {
+      Type          VoltageSource
+      Name          "V"
+      Show          on
+      Position      [340, 190]
+      Direction     down
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "DiscretizationBehavior"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "StateSpaceInlining"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope1"
+      Show          on
+      Position      [750, 140]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Location      [0, 26; 1283, 705]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADYA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGgA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABoAP///wAAAAMAAAAAAAAAAPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABQAP///wAABQMAAAKMAAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":209,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0.0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "0"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    "Time / s"
+      ShowLegend    "1"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency / Hz"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Component {
       Type          CScript
       Name          "C-Script"
       Show          on
-      Position      [620, 275]
+      Position      [605, 275]
       Direction     down
       Flipped       off
       LabelPosition north
       Parameter {
         Variable      "DialogGeometry"
-        Value         "[1138 292 505 321]"
+        Value         "[774 292 505 321]"
         Show          off
       }
       Parameter {
@@ -276,7 +404,7 @@ Plecs {
       }
       Parameter {
         Variable      "Ts"
-        Value         "1/20e3"
+        Value         "1/10e3"
         Show          off
       }
       Parameter {
@@ -370,209 +498,56 @@ Plecs {
         Show          off
       }
     }
-    Component {
-      Type          ZeroOrderHold
-      Name          "Zero-Order\nHold"
-      Show          on
-      Position      [750, 200]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Ts"
-        Value         "0.00005"
-        Show          off
-      }
-    }
-    Component {
-      Type          Voltmeter
-      Name          "Vm1"
-      Show          on
-      Position      [690, 200]
-      Direction     up
-      Flipped       off
-      LabelPosition west
-    }
-    Component {
-      Type          Step
-      Name          "Step"
-      Show          on
-      Position      [285, 205]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Time"
-        Value         "0.1"
-        Show          off
-      }
-      Parameter {
-        Variable      "Before"
-        Value         "48"
-        Show          off
-      }
-      Parameter {
-        Variable      "After"
-        Value         "40"
-        Show          off
-      }
-      Parameter {
-        Variable      "DataType"
-        Value         "10"
-        Show          off
-      }
-    }
-    Component {
-      Type          VoltageSource
-      Name          "V"
-      Show          on
-      Position      [340, 205]
-      Direction     down
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "DiscretizationBehavior"
-        Value         "2"
-        Show          off
-      }
-      Parameter {
-        Variable      "StateSpaceInlining"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          Scope
-      Name          "Scope1"
-      Show          on
-      Position      [750, 140]
-      Direction     up
-      Flipped       off
-      LabelPosition south
-      Location      [0, 26; 1539, 850]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAD8A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAH4A////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAAB+AP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABfAP///wAAB4QAAAPnAAAA"
-"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
-"AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAL/gMAAAAJAAAAB"
-"AAAAGQAAAAFAAAAZAAAAAYAAABkAAAABwAAAGQAAAABAAAAZAAAAAIAAABkAAAAAwAAAGQAAAAIAA"
-"AAZAAAAAkAAABkAAAA/AAAAAsBAAABAAAAAAAAAAAAAAAAff////8AAACBAAAAAAAAAAsAAADRAAA"
-"AAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAA"
-"AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA"
-"AArAAAAAQAAAAAAAAPoAAAAACs="
-      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      Axes          "1"
-      TimeRange     "0.0"
-      ScrollingMode "1"
-      SingleTimeAxis "1"
-      Open          "0"
-      Ts            "-1"
-      SampleLimit   "0"
-      XAxisLabel    "Time / s"
-      ShowLegend    "1"
-      Axis {
-        Name          ""
-        AutoScale     1
-        MinValue      0
-        MaxValue      1
-        Signals       {}
-        SignalTypes   [ ]
-        Untangle      0
-        KeepBaseline  off
-        BaselineValue 0
-      }
-      Fourier {
-        SingleXAxis       on
-        AxisLabel         "Frequency / Hz"
-        Scaling           0
-        PhaseDisplay      0
-        ShowFourierLegend off
-        Axis {
-          Name          ""
-          AutoScale     1
-          MinValue      0
-          MaxValue      1
-          Signals       {}
-          Untangle      0
-          KeepBaseline  off
-          BaselineValue 0
-        }
-      }
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "V"
-      SrcTerminal   1
-      Points        [340, 170]
-      DstComponent  "FET1"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "FET1"
-      SrcTerminal   2
-      Points        [455, 170]
-      Branch {
-        DstComponent  "D1"
-        DstTerminal   2
-      }
-      Branch {
-        DstComponent  "L1"
-        DstTerminal   1
-      }
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "V"
-      SrcTerminal   2
-      Points        [455, 225]
-      Branch {
-        DstComponent  "D1"
-        DstTerminal   1
-      }
-      Branch {
-        Points        [570, 225]
-        Branch {
-          DstComponent  "C1"
-          DstTerminal   2
-        }
-        Branch {
-          Points        [620, 225]
-          Branch {
-            DstComponent  "R1"
-            DstTerminal   2
-          }
-          Branch {
-            Points        [690, 225]
-            DstComponent  "Vm1"
-            DstTerminal   2
-          }
-        }
-      }
-    }
     Connection {
       Type          Wire
       SrcComponent  "C1"
-      SrcTerminal   1
-      Points        [570, 170]
+      SrcTerminal   2
+      Points        [570, 225]
       Branch {
-        DstComponent  "L1"
-        DstTerminal   2
+        Points        [430, 225]
+        Branch {
+          Points        [340, 225]
+          DstComponent  "V"
+          DstTerminal   2
+        }
+        Branch {
+          DstComponent  "FET1"
+          DstTerminal   2
+        }
       }
       Branch {
-        Points        [620, 170]
+        Points        [620, 225]
         Branch {
           DstComponent  "R1"
+          DstTerminal   2
+        }
+        Branch {
+          Points        [690, 225]
+          DstComponent  "Vm1"
+          DstTerminal   2
+        }
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "R1"
+      SrcTerminal   1
+      Points        [620, 160]
+      Branch {
+        Points        [570, 160]
+        Branch {
+          DstComponent  "C1"
           DstTerminal   1
         }
         Branch {
-          Points        [690, 170]
-          DstComponent  "Vm1"
-          DstTerminal   1
+          DstComponent  "D1"
+          DstTerminal   2
         }
+      }
+      Branch {
+        Points        [690, 160]
+        DstComponent  "Vm1"
+        DstTerminal   1
       }
     }
     Connection {
@@ -606,11 +581,34 @@ Plecs {
       }
     }
     Connection {
-      Type          Signal
-      SrcComponent  "C-Script"
-      SrcTerminal   2
-      DstComponent  "Comparator"
+      Type          Wire
+      SrcComponent  "V"
+      SrcTerminal   1
+      Points        [340, 160]
+      DstComponent  "L1"
       DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Comparator"
+      SrcTerminal   3
+      Points        [395, 280]
+      DstComponent  "FET1"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "FET1"
+      SrcTerminal   1
+      Points        [430, 160]
+      Branch {
+        DstComponent  "L1"
+        DstTerminal   2
+      }
+      Branch {
+        DstComponent  "D1"
+        DstTerminal   1
+      }
     }
     Connection {
       Type          Signal
@@ -622,11 +620,10 @@ Plecs {
     }
     Connection {
       Type          Signal
-      SrcComponent  "Comparator"
-      SrcTerminal   3
-      Points        [415, 280]
-      DstComponent  "FET1"
-      DstTerminal   3
+      SrcComponent  "C-Script"
+      SrcTerminal   2
+      DstComponent  "Comparator"
+      DstTerminal   1
     }
   }
 }
