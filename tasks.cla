@@ -2,8 +2,7 @@
 #include "board.h"
 #include "shared_vars.h"
 
-//#define B0 0.0105325f
-//#define B1 -0.0094675f
+
 #define B0 0.000532715f
 #define B1 0.000532715f
 #define B2 0.0f
@@ -14,6 +13,17 @@
 #define REF 30.0f
 #define UL 1.0f
 #define LL 0.0f
+
+
+//#define B0 0.00006000f
+//#define B1 0.00012000f
+//#define B2 0.00006000f
+//#define A1 -0.00004000f
+//#define A2 -0.99996000f
+
+//#define REF 30.0f
+//#define UL 1.0f
+//#define LL 0.0f
 
 
 float x[3];

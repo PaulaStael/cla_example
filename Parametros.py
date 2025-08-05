@@ -2,11 +2,11 @@ import numpy as np
 import scipy.signal as signal
 
 # Parâmetros do Boost
-Vin = 48            # Tensão de entrada (V)
-L = 400e-6          # Indutância (H)
-C = 47e-6           # Capacitância (F)
-R = 5               # Carga resistiva (Ohms)
-fs = 20e3           # Frequência de chaveamento (Hz)
+Vin = 12            # Tensão de entrada (V)
+L = 1e-3          # Indutância (H)
+C = 10e-6           # Capacitância (F)
+R = 10              # Carga resistiva (Ohms)
+fs = 10e3           # Frequência de chaveamento (Hz)
 Ts = 1/fs           # Período de amostragem (s)
 
 # Função de transferência contínua: G(s) = Vin / (L*C*s^2 + (R/L)*s)
