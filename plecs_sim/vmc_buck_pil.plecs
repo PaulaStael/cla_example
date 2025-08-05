@@ -217,7 +217,7 @@ Plecs {
       }
       Parameter {
         Variable      "f"
-        Value         "10e3"
+        Value         "20e3"
         Show          on
       }
       Parameter {

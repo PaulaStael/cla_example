@@ -3,16 +3,15 @@
 #include "shared_vars.h"
 
 
-#define B0 0.000532715f
-#define B1 0.000532715f
+#define B0 0.001266f
+#define B1 -0.000734f
 #define B2 0.0f
 #define A1 -1.000000f
 #define A2 0.0f
 
-
 #define REF 30.0f
-#define UL 1.0f
-#define LL 0.0f
+#define UL 0.95f         // upper limit
+#define LL 0.05f
 
 
 //#define B0 0.00006000f
